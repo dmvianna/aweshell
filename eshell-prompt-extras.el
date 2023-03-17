@@ -128,7 +128,7 @@
 (defface epe-dir-face
   `((t (:inherit ,(if (facep 'eshell-ls-directory)
                       'eshell-ls-directory
-                    'eshell-ls-directory-face) )))
+                    'eshell-ls-directory-face))))
   "Face of directory in prompt."
   :group 'epe)
 
@@ -150,22 +150,22 @@
   :group 'epe)
 
 (defface epe-pipeline-delimiter-face
-  '((t :foreground "green"))
+  '((t :foreground "Darkgray"))
   "Face for pipeline theme delimiter."
   :group 'epe)
 
 (defface epe-pipeline-user-face
-  '((t :foreground "red"))
+  '((t :foreground "Red"))
   "Face for user in pipeline theme."
   :group 'epe)
 
 (defface epe-pipeline-host-face
-  '((t :foreground "blue"))
+  '((t :foreground "Lightsalmon"))
   "Face for host in pipeline theme."
   :group 'epe)
 
 (defface epe-pipeline-time-face
-  '((t :foreground "yellow"))
+  '((t :foreground "Lightyellow"))
   "Face for time in pipeline theme."
   :group 'epe)
 
@@ -417,23 +417,23 @@ length of PATH (sans directory slashes) down to MAX-LEN."
           (epe-colorize-with-face "┌─[" 'epe-pipeline-delimiter-face)
           (epe-colorize-with-face (epe-remote-user) 'epe-pipeline-user-face)
           (epe-colorize-with-face "@" 'epe-pipeline-delimiter-face)
-          (epe-colorize-with-face (epe-remote-host) 'epe-pipeline-host-face))
-         )
+          (epe-colorize-with-face (epe-remote-host) 'epe-pipeline-host-face)))
+
      (progn
        (concat
         (epe-colorize-with-face "┌─[" 'epe-pipeline-delimiter-face)
         (epe-colorize-with-face (user-login-name) 'epe-pipeline-user-face)
         (epe-colorize-with-face "@" 'epe-pipeline-delimiter-face)
-        (epe-colorize-with-face (system-name) 'epe-pipeline-host-face)))
-     )
+        (epe-colorize-with-face (system-name) 'epe-pipeline-host-face))))
+
    (concat
     (epe-colorize-with-face "]──[" 'epe-pipeline-delimiter-face)
     (epe-colorize-with-face (format-time-string "%H:%M" (current-time)) 'epe-pipeline-time-face)
     (epe-colorize-with-face "]──[" 'epe-pipeline-delimiter-face)
     (epe-colorize-with-face (concat (eshell/pwd)) 'epe-dir-face)
     (epe-colorize-with-face  "]\n" 'epe-pipeline-delimiter-face)
-    (epe-colorize-with-face "└─>" 'epe-pipeline-delimiter-face)
-    )
+    (epe-colorize-with-face "└─>" 'epe-pipeline-delimiter-face))
+
    (when (and epe-show-python-info (bound-and-true-p venv-current-name))
      (epe-colorize-with-face (concat "(" venv-current-name ") ") 'epe-venv-face))
    (when (epe-git-p)
